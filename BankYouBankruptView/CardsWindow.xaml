@@ -1,0 +1,75 @@
+﻿<Window x:Class="BankYouBankruptView.CardsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BankYouBankruptView"
+        mc:Ignorable="d"
+        Loaded="CardsWindow_Load"
+        Title="Карты" Height="466.89" Width="736.059">
+    <Window.Resources>
+        <Style TargetType="Button" x:Key="MainMenu_button">
+            <Setter Property="Background" Value="Blue"></Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="FontFamily" Value="Consolas"></Setter>
+            <Setter Property="FontWeight" Value="Bold"></Setter>
+            <Setter Property="FontSize" Value="14"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="MouseEnter">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" To="Black" Duration="0:0:0.25">
+                            </ColorAnimation>
+                            <ColorAnimation Storyboard.TargetProperty="(Button.Foreground).(SolidColorBrush.Color)" To="White" Duration="0:0:0.25">
+                            </ColorAnimation>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="MouseLeave">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" To="Blue" Duration="0:0:0.25">
+                            </ColorAnimation>
+                            <ColorAnimation Storyboard.TargetProperty="(Button.Foreground).(SolidColorBrush.Color)" To="White" Duration="0:0:0.25">
+                            </ColorAnimation>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <DataGrid x:Name="dataGridCards" Grid.Column="0" AutoGenerateColumns="False" CanUserAddRows="false">
+            <DataGrid.Columns>
+                <DataGridTextColumn Visibility="Hidden" Binding="{Binding Path=Id}"/>
+                <DataGridTextColumn Header="Номер карты" Binding="{Binding Path=CardsNumber}" Width="0.5*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Код безопастности" Binding="{Binding Path=SecurityCode}" Width="0.5*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Дата окончания" Binding="{Binding Path=ServiceEndDateString}" Width="0.5*"></DataGridTextColumn>
+                <DataGridTextColumn Header="ФИО пользователя" Binding="{Binding Path=UserFIO}" Width="0.5*"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Grid.Column="1" VerticalAlignment="Top" Height="426">
+            <Button Content="Добавить" Margin="20,20,10,20" Style="{StaticResource MainMenu_button}" Click="ButtonAdd_Click" Height="45"></Button>
+            <Button Content="Изменить" Margin="20,20,10,20" Style="{StaticResource MainMenu_button}" Click="ButtonUpd_Click" Height="45"></Button>
+            <Button Content="Удалить" Margin="20,20,10,20" Style="{StaticResource MainMenu_button}" Click="ButtonDel_Click" Height="45"></Button>
+            <Button Content="Обновить" Margin="20,20,10,20" Style="{StaticResource MainMenu_button}" Click="ButtonRef_Click" Height="45"/>
+            <Button Content="Отмена" Margin="20,20,10,20" Style="{StaticResource MainMenu_button}" Click="ButtonCansel_Click" Height="45"/>
+        </StackPanel>
+    </Grid>
+</Window>
